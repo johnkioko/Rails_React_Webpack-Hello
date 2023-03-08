@@ -10,15 +10,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-    ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react']
+          }
+        }
+      }
+    ]
   },
   output: {
     filename: '[name].js',
-    sourceMapFilename: '[name].js.map',
+    sourceMapFilename: '[file].map',
     path: path.resolve(__dirname, 'app/assets/builds'),
   },
   plugins: [
